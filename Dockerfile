@@ -21,8 +21,12 @@ RUN apt-get update \
 RUN curl -fsSL https://github.com/NVIDIA/NeMo-Speech.cpp/raw/main/scripts/install.sh \
     | sh -s -- --prefix /opt/nemo-speech --backend cpu --no-modify-path
 
-# Fun-ASR-Nano's GGUF path is an upstream llama.cpp target, not a Python wheel.
+# Fun-ASR-Nano's CLI is a FunASR runtime example layered onto llama.cpp.
 RUN git clone --depth 1 https://github.com/ggml-org/llama.cpp /opt/llama.cpp \
+    && git clone --depth 1 https://github.com/modelscope/FunASR /opt/funasr \
+    && cp -a /opt/funasr/runtime/llama.cpp/funasr-common /opt/llama.cpp/examples/ \
+    && cp -a /opt/funasr/runtime/llama.cpp/fun-asr-nano/funasr-cli /opt/llama.cpp/examples/ \
+    && printf '\nadd_subdirectory(funasr-cli)\n' >> /opt/llama.cpp/examples/CMakeLists.txt \
     && cmake -S /opt/llama.cpp -B /opt/llama.cpp/build-funasr \
       -G Ninja \
       -DCMAKE_BUILD_TYPE=Release \

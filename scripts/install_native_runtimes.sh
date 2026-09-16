@@ -11,6 +11,7 @@ BIN_DIR="$LOCAL_DIR/bin"
 NEMO_DIR="$LOCAL_DIR/nemo-speech"
 LLAMA_DIR="$LOCAL_DIR/src/llama.cpp"
 LLAMA_BUILD_DIR="$LLAMA_DIR/build-funasr"
+FUNASR_DIR="$LOCAL_DIR/src/FunASR"
 
 if [[ "$(uname -s)" != "Darwin" ]]; then
   echo "This installer is for macOS. Docker installs both runtimes in its image." >&2
@@ -40,6 +41,24 @@ ln -sf "$NEMO_DIR/bin/nemo-speech" "$BIN_DIR/nemo-speech"
 if [[ ! -d "$LLAMA_DIR/.git" ]]; then
   echo "Downloading llama.cpp source for Fun-ASR-Nano..."
   git clone --depth 1 https://github.com/ggml-org/llama.cpp "$LLAMA_DIR"
+fi
+
+if [[ ! -d "$FUNASR_DIR/.git" ]]; then
+  echo "Downloading FunASR's llama.cpp runtime examples..."
+  git clone --depth 1 https://github.com/modelscope/FunASR "$FUNASR_DIR"
+fi
+
+# llama-funasr-cli is maintained by FunASR and is built as an example against
+# the llama.cpp checkout; it is not a target in upstream llama.cpp by itself.
+if [[ ! -f "$LLAMA_DIR/examples/funasr-cli/CMakeLists.txt" || ! -f "$LLAMA_DIR/examples/funasr-common/funasr_audio.h" ]]; then
+  # Replace incomplete copies from older installer revisions. The expected
+  # source is fun-asr-nano/funasr-cli itself, not its parent directory.
+  rm -rf "$LLAMA_DIR/examples/funasr-cli" "$LLAMA_DIR/examples/funasr-common"
+  cp -a "$FUNASR_DIR/runtime/llama.cpp/funasr-common" "$LLAMA_DIR/examples/"
+  cp -a "$FUNASR_DIR/runtime/llama.cpp/fun-asr-nano/funasr-cli" "$LLAMA_DIR/examples/"
+fi
+if ! grep -q 'add_subdirectory(funasr-cli)' "$LLAMA_DIR/examples/CMakeLists.txt"; then
+  printf '\nadd_subdirectory(funasr-cli)\n' >> "$LLAMA_DIR/examples/CMakeLists.txt"
 fi
 
 echo "Building llama-funasr-cli..."
