@@ -16,7 +16,7 @@ provider and is enabled only when the user supplies a key in the UI.
 
 ## Requirements
 
-- Python 3.12–3.14 on macOS or Windows.
+- Python 3.12–3.14 on macOS.
 - 4 GB RAM for the basic app; additional memory is needed for larger models.
 - Docker Desktop 4.x or newer for the container workflow.
 
@@ -48,31 +48,6 @@ If compilation is required, install Apple’s command-line tools first:
 ```bash
 xcode-select --install
 ```
-
-## Windows installation
-
-Open PowerShell:
-
-```powershell
-git clone https://github.com/nirbhay41120003/EchoMind.git
-Set-Location EchoMind
-py -3.12 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python -m uvicorn app.main:app --reload
-```
-
-Open <http://127.0.0.1:8000> and allow microphone access. If PowerShell blocks
-activation for the current session, run:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-```
-
-Windows users who need to build `llama-cpp-python` locally may also need the
-Visual Studio C++ Build Tools and CMake. The core app still starts without a
-working local chat runtime and falls back to extractive answers.
 
 ## Docker
 
