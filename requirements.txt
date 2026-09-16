@@ -1,0 +1,10 @@
+# EchoMemory's complete Python runtime. These versions were verified in the
+# project's .venv (Python 3.14.3) and keep model-runtime drift predictable.
+fastapi==0.141.1
+uvicorn[standard]==0.53.0
+numpy==2.5.3
+sarvamai==0.1.33
+
+# The web UI can download and activate these model families, so their Python
+# runtimes are part of the standard install rather than a hidden follow-up step.
+-r requirements-local-ai.txt

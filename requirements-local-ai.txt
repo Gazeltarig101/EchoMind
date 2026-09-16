@@ -1,0 +1,13 @@
+# These are included by requirements.txt. Keep this file separately installable
+# for existing checkouts that previously installed the base requirements only.
+faster-whisper==1.2.1
+sentence-transformers==6.0.1
+llama-cpp-python==0.3.35  # local GGUF chat inference
+
+# Fun-ASR-Nano native Transformers runtime (not required for its GGUF runtime).
+# These pins come from the official Fun-ASR quickstart.
+# transformers==5.17.0
+# torch==2.10.0
+# torchaudio==2.10.0
+# librosa==0.11.0
+# soundfile==0.13.1

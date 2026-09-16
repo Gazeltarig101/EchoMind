@@ -1,0 +1,9 @@
+# Python runtime for Fun-ASR-Nano Transformers inference.
+# The GGUF option in the app uses the separate llama-funasr-cli binary;
+# see MODEL_SETUP.md for its native runtime installation.
+transformers==5.17.0
+torch==2.10.0
+torchaudio==2.10.0
+librosa==0.11.0
+soundfile==0.13.1
+funasr==1.4.15
