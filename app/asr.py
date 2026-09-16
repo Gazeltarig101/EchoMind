@@ -91,7 +91,10 @@ class Transcriber:
     @staticmethod
     def native_runtime(backend: str, model_path: str) -> tuple[str | None, str | None]:
         if backend == "nemotron-gguf":
+            project_binary = Path(__file__).resolve().parent.parent / ".local" / "bin" / "nemo-speech"
             binary = os.getenv("ECHOMEMORY_NEMO_SPEECH_BIN") or shutil.which("nemo-speech")
+            if not binary and project_binary.is_file() and os.access(project_binary, os.X_OK):
+                binary = str(project_binary)
             if not binary:
                 return None, "Nemotron needs NVIDIA NeMo-Speech.cpp (`nemo-speech`). Install it, then select this model again."
             ggufs = list(Path(model_path).glob("*.gguf")) if Path(model_path).is_dir() else [Path(model_path)]

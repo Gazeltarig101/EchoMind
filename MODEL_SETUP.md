@@ -16,16 +16,19 @@ cards in the UI: Faster-Whisper, Sentence Transformers, and llama.cpp Python.
 The separate `requirements-local-ai.txt` file remains available for older
 checkouts, but does not need to be installed again after `requirements.txt`.
 
-For the alternative runtimes, install the matching optional file instead:
+The Nemotron GGUF and Fun-ASR-Nano GGUF model cards use native executables,
+which are installed by the platform setup described below. They do not require
+separate Python model packages.
+
+On macOS, install both native runtimes once after installing the Python
+requirements:
 
 ```bash
-pip install -r requirements-funasr.txt       # Python Fun-ASR path
-pip install -r requirements-nemotron.txt     # NeMo Python path
+./scripts/install_native_runtimes.sh
 ```
 
-The model cards for Nemotron GGUF and Fun-ASR-Nano GGUF use native executables,
-not these optional Python runtimes. Install the executable described below when
-you choose either alternative.
+The script keeps the executables under `.local/`, and EchoMemory discovers them
+automatically. The Docker image builds and includes both runtimes itself.
 
 ## 2. Download in the app (recommended)
 
@@ -64,15 +67,10 @@ Fun-ASR-Nano remains a native-runtime asset and requires the FunASR
 `llama-funasr-cli` binary; alternative weights are not silently routed through an
 incompatible decoder.
 
-For GGUF inference, install the native runtime from the official projects:
-
-```bash
-# Nemotron GGUF runtime
-curl -fsSL https://github.com/NVIDIA/NeMo-Speech.cpp/raw/main/scripts/install.sh | sh
-
-# Fun-ASR-Nano GGUF runtime: install a prebuilt FunASR llama.cpp release
-# and ensure `llama-funasr-cli` is on PATH.
-```
+For GGUF inference outside EchoMemory, the official runtimes are
+`nemo-speech` and `llama-funasr-cli`. EchoMemory installs and locates these
+through the setup script or Docker image; no additional runtime command is
+needed.
 
 ## 4. Run with manually installed local paths
 

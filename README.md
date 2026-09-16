@@ -34,6 +34,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+./scripts/install_native_runtimes.sh
 python -m uvicorn app.main:app --reload
 ```
 
@@ -68,11 +69,10 @@ Browser microphone access works through `localhost` in Docker Desktop.
 
 The recommended setup is downloaded from inside the app after dependencies are
 installed. See [MODEL_SETUP.md](MODEL_SETUP.md) for supported model families,
-offline setup, and the optional native Nemotron and Fun-ASR runtimes.
+offline setup, and the native Nemotron and Fun-ASR runtimes.
 
-The native Nemotron and Fun-ASR executables are platform-specific and are not
-silently bundled into the Python requirements or Docker image. Their cards show
-the missing runtime instead of crashing the application.
+The macOS setup script installs the native Nemotron and Fun-ASR executables into
+`.local/`. The Docker image builds and includes both runtimes automatically.
 
 ## Configuration
 
@@ -107,6 +107,6 @@ app/                    FastAPI server, local inference adapters, and web UI
 tests/                  Standard-library unit tests
 requirements*.txt       Reproducible Python dependency sets
 Dockerfile              Non-root container image
-MODEL_SETUP.md          Model downloads and optional native runtimes
+MODEL_SETUP.md          Model downloads and native runtime setup
 SECURITY.md             Public-repository and credential guidance
 ```
