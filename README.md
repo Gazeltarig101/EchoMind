@@ -1,9 +1,29 @@
-# EchoMemory
+<div align="center">
+  <img src="app/web/echomemory-mark.svg" alt="EchoMemory logo" width="88" height="88">
+  <h1>EchoMemory</h1>
+  <p><strong>Your conversations, made searchable.</strong></p>
+  <p>
+    <a href="https://github.com/nirbhay41120003/EchoMind">Site</a> ·
+    <a href="#how-it-works">How it works</a> ·
+    <a href="#features">Features</a> ·
+    <a href="#quick-start-macos">Quick start</a>
+  </p>
+  <p>
+    <img src="https://img.shields.io/badge/license-see%20LICENSE-informational" alt="License">
+    <img src="https://img.shields.io/badge/python-3.12%E2%80%933.14-blue" alt="Python 3.12–3.14">
+    <img src="https://img.shields.io/badge/platform-macOS-lightgrey" alt="macOS">
+    <img src="https://img.shields.io/badge/data-local--first-success" alt="Local first">
+  </p>
+</div>
 
-**Your conversations, made searchable.**
+<div align="center">
+  <video src="assets/echomemory-demo.mp4" controls muted playsinline width="100%"></video>
+</div>
+
+EchoMemory is a local-first voice memory assistant:
 
 We speak far more than we write, and almost none of it is kept. EchoMemory
-is a local-first voice memory assistant: it listens when you tell it to,
+listens when you tell it to,
 transcribes what's said, quietly turns the meaningful parts into searchable
 long-term memory, and lets you ask questions about anything you've said —
 grounded in what you actually said, not a guess.
@@ -80,7 +100,7 @@ flowchart LR
 ## Quick start (macOS)
 
 ```bash
-git clone https://github.com/nirbhay41120003/EchoMemory.git
+git clone https://github.com/nirbhay41120003/EchoMind.git
 cd EchoMemory
 python3 -m venv .venv
 source .venv/bin/activate
@@ -105,7 +125,7 @@ gitignored — your data never gets committed.
 ## Quick start (Docker)
 
 ```bash
-git clone https://github.com/nirbhay41120003/EchoMemory.git
+git clone https://github.com/nirbhay41120003/EchoMind.git
 cd EchoMemory
 docker build -t echomemory .
 docker run --rm -p 8000:8000 \
