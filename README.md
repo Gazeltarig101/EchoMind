@@ -1,35 +1,87 @@
 # EchoMemory
 
-EchoMemory is a local-first voice memory assistant. It captures speech in the
-browser, transcribes it with a local model, stores memories in SQLite, and
-searches them locally. The optional Sarvam integration is the only cloud speech
-provider and is enabled only when the user supplies a key in the UI.
+**Your conversations, made searchable.**
+
+We speak far more than we write, and almost none of it is kept. EchoMemory
+is a local-first voice memory assistant: it listens when you tell it to,
+transcribes what's said, quietly turns the meaningful parts into searchable
+long-term memory, and lets you ask questions about anything you've said —
+grounded in what you actually said, not a guess.
+
+It was built with people who have hearing difficulties in mind — as a smart
+assistant that helps you keep track of conversations, not a hearing aid
+device — but it's useful for anyone who forgets things they meant to
+remember.
+
+Everything runs on your machine. No cloud speech, embedding, or chat calls
+by default, and nothing leaves your device unless you explicitly turn on
+the optional Sarvam integration and supply your own key.
+
+![License](https://img.shields.io/badge/license-see%20LICENSE-informational)
+![Python](https://img.shields.io/badge/python-3.12%E2%80%933.14-blue)
+![Platform](https://img.shields.io/badge/platform-macOS-lightgrey)
+![Local first](https://img.shields.io/badge/data-local--first-success)
+
+---
+
+## Why EchoMemory
+
+We generate a huge amount of information through everyday conversation and
+explicitly save almost none of it. A name mentioned once, a plan made in
+passing, a detail from a call — most of it is gone by the next day.
+EchoMemory captures it once, so you don't have to remember to write it down.
+
+## How it works
+
+```mermaid
+flowchart LR
+    A[🎙️ Capture] --> B[Local ASR<br/>transcribes live]
+    B --> C[Live transcript<br/>shown in the browser]
+    C --> D[Embed & store<br/>SQLite + local vector search]
+    D --> E[RAG chat<br/>ask about anything you've said]
+    D --> F[Daily summary]
+```
+
+1. **Capture** — click to start listening in the browser; nothing is
+   captured until you do.
+2. **Transcribe** — a local ASR model converts speech to text in
+   near-real-time, streamed to the UI as it's spoken.
+3. **Store** — finalized transcript segments are embedded locally and
+   saved to SQLite alongside timestamps, so every memory is searchable
+   later and traceable back to when it was said.
+4. **Retrieve & chat** — ask a question in plain language; EchoMemory
+   retrieves the relevant transcript chunks and answers using a local
+   chat model, grounded in what was actually said.
 
 ## Features
 
-- Local browser microphone capture with live transcript updates.
-- SQLite memory storage with local semantic search and a deterministic fallback.
-- Explicit model downloads from the Local model setup panel; no model library
-  silently downloads weights.
-- Optional local GGUF chat models for grounded answers and transcript cleanup.
-- Sarvam Saaras v3 support for Indian-language speech when explicitly configured.
+- 🎙️ **Live browser capture** — click Capture, see the transcript appear
+  as you speak, no round trip to a server.
+- 🔍 **Local semantic search** — SQLite-backed memory store with local
+  embeddings and a deterministic fallback if a model isn't loaded yet.
+- 🧠 **Grounded RAG chat** — query your own memory instead of guessing;
+  answers are backed by retrieved transcript context.
+- 📦 **No silent downloads** — every model is fetched explicitly from the
+  in-app **Local model setup** panel. Nothing downloads in the background.
+- 🧩 **Pluggable local models** — local GGUF chat models for answers and
+  transcript cleanup, with native Nemotron and Fun-ASR runtimes available
+  for faster on-device transcription.
+- 🌐 **Optional cloud speech** — Sarvam Saaras v3 for Indian-language
+  speech, entirely opt-in and only active once you add your own key.
+- 🔒 **Local by default** — your data lives on your machine unless you
+  choose otherwise.
 
 ## Requirements
 
-- Python 3.12–3.14 on macOS.
-- 4 GB RAM for the basic app; additional memory is needed for larger models.
-- Docker Desktop 4.x or newer for the container workflow.
+- Python 3.12–3.14 on macOS
+- 4 GB RAM minimum (more for larger local models)
+- Docker Desktop 4.x+ if you'd rather run it in a container
 
-The dependency versions in `requirements.txt` were verified in the development
-environment (`Python 3.14.3`). The standard install includes the Python
-runtimes used by the built-in Whisper, embeddings, and local GGUF chat cards.
-Model weights are not bundled with the repository.
-
-## macOS installation
+## Quick start (macOS)
 
 ```bash
-git clone https://github.com/nirbhay41120003/EchoMind.git
-cd EchoMind
+git clone https://github.com/nirbhay41120003/EchoMemory.git
+cd EchoMemory
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -38,21 +90,23 @@ python -m pip install -r requirements.txt
 python -m uvicorn app.main:app --reload
 ```
 
-Open <http://127.0.0.1:8000>, allow microphone access, and use **More → Local
-model setup** to download the recommended Whisper and embeddings models. Local
-model files are stored under `models/`; memory data and settings are stored under
-`data/` or the OS user data directory. Both locations are ignored by Git.
+Open **http://127.0.0.1:8000**, allow microphone access, and go to
+**More → Local model setup** to download the recommended Whisper and
+embedding models. Model files live under `models/`; your memory data and
+settings live under `data/` (or the OS user data directory). Both are
+gitignored — your data never gets committed.
 
-On Apple Silicon, `llama-cpp-python` may use a prebuilt wheel or compile locally.
-If compilation is required, install Apple’s command-line tools first:
+> **Apple Silicon note:** `llama-cpp-python` may need to compile locally.
+> If so, install the command-line tools first:
+> ```bash
+> xcode-select --install
+> ```
+
+## Quick start (Docker)
 
 ```bash
-xcode-select --install
-```
-
-## Docker
-
-```bash
+git clone https://github.com/nirbhay41120003/EchoMemory.git
+cd EchoMemory
 docker build -t echomemory .
 docker run --rm -p 8000:8000 \
   -v echomemory-data:/app/data \
@@ -60,19 +114,18 @@ docker run --rm -p 8000:8000 \
   echomemory
 ```
 
-Open <http://127.0.0.1:8000>. The named volumes preserve the SQLite database,
-settings, and downloaded models across container upgrades. The image runs as a
-non-root user and installs the same Python dependency set as the local setup.
-Browser microphone access works through `localhost` in Docker Desktop.
+Open **http://127.0.0.1:8000**. Named volumes persist your database,
+settings, and downloaded models across upgrades. The image runs as a
+non-root user, and browser microphone access works through `localhost` in
+Docker Desktop.
 
 ## Model setup
 
-The recommended setup is downloaded from inside the app after dependencies are
-installed. See [MODEL_SETUP.md](MODEL_SETUP.md) for supported model families,
-offline setup, and the native Nemotron and Fun-ASR runtimes.
-
-The macOS setup script installs the native Nemotron and Fun-ASR executables into
-`.local/`. The Docker image builds and includes both runtimes automatically.
+Model downloads happen from inside the app, after dependencies are
+installed — see [MODEL_SETUP.md](MODEL_SETUP.md) for supported model
+families, offline setup, and the native Nemotron / Fun-ASR runtimes. The
+macOS install script places both native runtimes under `.local/`; the
+Docker image builds and includes them automatically.
 
 ## Configuration
 
@@ -85,9 +138,9 @@ The macOS setup script installs the native Nemotron and Fun-ASR executables into
 | `ECHOMEMORY_LLM_MODEL` | empty | Existing local GGUF chat model path |
 | `ECHOMEMORY_DEVICE` | `cpu` | ASR device |
 
-Sarvam credentials are entered through the UI and are stored with restrictive
-local permissions where the operating system supports them. Never put a real
-key in an environment file, screenshot, issue, test, or commit.
+Sarvam credentials are entered through the UI and stored with restrictive
+local permissions where the OS supports it. **Never** put a real key in an
+environment file, screenshot, issue, test, or commit.
 
 ## Development and verification
 
@@ -96,9 +149,10 @@ python -m unittest discover -s tests -v
 python scripts/check_public_repo.py
 ```
 
-The public-repository check requires an initialized Git checkout and rejects
-tracked databases, model files, local binaries, environment files, and common
-credential markers. Read [SECURITY.md](SECURITY.md) before publishing changes.
+The public-repo check requires an initialized Git checkout and rejects
+tracked databases, model files, local binaries, `.env` files, and common
+credential markers before you push. Read [SECURITY.md](SECURITY.md) before
+publishing changes.
 
 ## Project layout
 
@@ -110,3 +164,14 @@ Dockerfile              Non-root container image
 MODEL_SETUP.md          Model downloads and native runtime setup
 SECURITY.md             Public-repository and credential guidance
 ```
+
+## Contributing
+
+Issues and pull requests are welcome — whether that's a bug report, a new
+local model backend, or UI polish. If you're picking this up for the first
+time, `MODEL_SETUP.md` and `SECURITY.md` are the two files worth reading
+before your first PR.
+
+## License
+
+See [LICENSE](LICENSE) for terms.
