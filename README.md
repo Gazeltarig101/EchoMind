@@ -16,15 +16,12 @@
   </p>
 </div>
 
-<div align="center">
-  <video src="https://github.com/user-attachments/assets/0196c943-be95-4576-9794-05012fda5388" controls muted playsinline width="100%"></video>
-  <p><a href="https://github.com/user-attachments/assets/0196c943-be95-4576-9794-05012fda5388">▶ Download the demo video</a></p>
-</div>
+https://github.com/user-attachments/assets/0196c943-be95-4576-9794-05012fda5388
 
-EchoMemory is a local-first voice memory assistant:
+<p align="center"><sub>Demo of EchoMemory in action. <a href="https://github.com/user-attachments/assets/0196c943-be95-4576-9794-05012fda5388">Download</a>.</sub></p>
 
-We speak far more than we write, and almost none of it is kept. EchoMemory
-listens when you tell it to,
+We speak far more than we write, and almost none of it is kept. EchoMemory is
+a local-first voice memory assistant: it listens when you tell it to,
 transcribes what's said, quietly turns the meaningful parts into searchable
 long-term memory, and lets you ask questions about anything you've said —
 grounded in what you actually said, not a guess.
@@ -37,11 +34,6 @@ remember.
 Everything runs on your machine. No cloud speech, embedding, or chat calls
 by default, and nothing leaves your device unless you explicitly turn on
 the optional Sarvam integration and supply your own key.
-
-![License](https://img.shields.io/badge/license-see%20LICENSE-informational)
-![Python](https://img.shields.io/badge/python-3.12%E2%80%933.14-blue)
-![Platform](https://img.shields.io/badge/platform-macOS-lightgrey)
-![Local first](https://img.shields.io/badge/data-local--first-success)
 
 ---
 
