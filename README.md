@@ -17,7 +17,10 @@
 </div>
 
 <div align="center">
-  <video src="assets/echomemory-demo.mp4" controls muted playsinline width="100%"></video>
+  <a href="./assets/echomemory-demo.mp4">
+    <img src="./assets/echomemory-demo.gif" alt="EchoMemory demo preview" width="100%">
+  </a>
+  <p><a href="./assets/echomemory-demo.mp4">▶ Watch the full demo video</a></p>
 </div>
 
 EchoMemory is a local-first voice memory assistant:
