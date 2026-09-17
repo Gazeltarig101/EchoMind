@@ -18,7 +18,7 @@
 
 https://github.com/user-attachments/assets/0196c943-be95-4576-9794-05012fda5388
 
-<p align="center"><sub>Demo of EchoMemory in action. <a href="https://github.com/user-attachments/assets/0196c943-be95-4576-9794-05012fda5388">Download</a>.</sub></p>
+<p align="center"><sub>Demo, recorded September 17, 2026: All Local models working Fine macOS 16Gb <a href="https://github.com/user-attachments/assets/0196c943-be95-4576-9794-05012fda5388">Download</a>.</sub></p>
 
 We speak far more than we write, and almost none of it is kept. EchoMemory is
 a local-first voice memory assistant: it listens when you tell it to,
