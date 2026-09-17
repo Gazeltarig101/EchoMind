@@ -3,12 +3,17 @@
   <h1>EchoMemory</h1>
   <p><strong>Your conversations, made searchable.</strong></p>
   <p>
-    <a href="https://github.com/nirbhay41120003/EchoMind">Site</a> ·
+    <a href="#demo">Demo</a> ·
     <a href="#how-it-works">How it works</a> ·
     <a href="#features">Features</a> ·
-    <a href="#quick-start-macos">Quick start</a>
+    <a href="#echomemory-vs-cloud-alternatives">Comparison</a> ·
+    <a href="#quick-start-macos">Quick start</a> ·
+    <a href="#roadmap">Roadmap</a> ·
+    <a href="#contributing">Contributing</a>
   </p>
   <p>
+    <img src="https://img.shields.io/github/stars/nirbhay41120003/EchoMemory?style=social" alt="GitHub stars">
+    <img src="https://img.shields.io/github/last-commit/nirbhay41120003/EchoMemory" alt="Last commit">
     <img src="https://img.shields.io/badge/license-see%20LICENSE-informational" alt="License">
     <img src="https://img.shields.io/badge/python-3.12%E2%80%933.14-blue" alt="Python 3.12–3.14">
     <img src="https://img.shields.io/badge/platform-macOS-lightgrey" alt="macOS">
@@ -16,9 +21,9 @@
   </p>
 </div>
 
-https://github.com/user-attachments/assets/0196c943-be95-4576-9794-05012fda5388
-
-<p align="center"><sub>Demo, recorded September 17, 2026: All Local models working Fine macOS 16Gb <a href="https://github.com/user-attachments/assets/0196c943-be95-4576-9794-05012fda5388">Download</a>.</sub></p>
+<p align="center">
+  <sub>If EchoMemory is useful to you, a ⭐ helps other people find it.</sub>
+</p>
 
 We speak far more than we write, and almost none of it is kept. EchoMemory is
 a local-first voice memory assistant: it listens when you tell it to,
@@ -34,6 +39,12 @@ remember.
 Everything runs on your machine. No cloud speech, embedding, or chat calls
 by default, and nothing leaves your device unless you explicitly turn on
 the optional Sarvam integration and supply your own key.
+
+## Demo
+
+https://github.com/user-attachments/assets/0196c943-be95-4576-9794-05012fda5388
+
+<p align="center"><sub>Recorded September 17, 2026 — all models running locally on a 16 GB M-series MacBook. <a href="https://github.com/user-attachments/assets/0196c943-be95-4576-9794-05012fda5388">Download</a>.</sub></p>
 
 ---
 
@@ -84,6 +95,25 @@ flowchart LR
 - 🔒 **Local by default** — your data lives on your machine unless you
   choose otherwise.
 
+## Who it's for
+
+- **People with hearing difficulties** who want a reliable record of
+  conversations without relying on a hearing device.
+- **Anyone who forgets things said in passing** — calls, meetings, casual
+  plans made mid-conversation.
+- **Privacy-conscious users** who want the convenience of an AI memory
+  assistant without sending recordings to someone else's server.
+
+## EchoMemory vs. cloud alternatives
+
+| | EchoMemory | Typical cloud voice-memory tools |
+| --- | --- | --- |
+| Where speech is processed | On your machine | Vendor's servers |
+| Where memory is stored | Local SQLite + local vector store | Vendor's cloud |
+| Cost | Free, open source | Usually subscription |
+| Works offline | Yes | No |
+| Model choice | You pick the local models | Fixed by the vendor |
+
 ## Requirements
 
 - Python 3.12–3.14 on macOS
@@ -93,7 +123,7 @@ flowchart LR
 ## Quick start (macOS)
 
 ```bash
-git clone https://github.com/nirbhay41120003/EchoMind.git
+git clone https://github.com/nirbhay41120003/EchoMemory.git
 cd EchoMemory
 python3 -m venv .venv
 source .venv/bin/activate
@@ -118,7 +148,7 @@ gitignored — your data never gets committed.
 ## Quick start (Docker)
 
 ```bash
-git clone https://github.com/nirbhay41120003/EchoMind.git
+git clone https://github.com/nirbhay41120003/EchoMemory.git
 cd EchoMemory
 docker build -t echomemory .
 docker run --rm -p 8000:8000 \
@@ -178,12 +208,27 @@ MODEL_SETUP.md          Model downloads and native runtime setup
 SECURITY.md             Public-repository and credential guidance
 ```
 
+## Roadmap
+
+Planned, not yet built — flagged here so intent is clear and contributions
+are easier to scope:
+
+- [ ] Cross-platform install path (Windows/Linux), currently macOS-only
+- [ ] Exportable memory (JSON/Markdown) for backup or migration
+- [ ] Richer daily-summary view with per-day browsing
+
 ## Contributing
 
 Issues and pull requests are welcome — whether that's a bug report, a new
 local model backend, or UI polish. If you're picking this up for the first
 time, `MODEL_SETUP.md` and `SECURITY.md` are the two files worth reading
 before your first PR.
+
+## Star History
+
+<a href="https://star-history.com/#nirbhay41120003/EchoMemory&Date">
+  <img src="https://api.star-history.com/svg?repos=nirbhay41120003/EchoMemory&type=Date" alt="Star History Chart">
+</a>
 
 ## License
 
