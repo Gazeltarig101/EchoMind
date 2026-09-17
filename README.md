@@ -3,7 +3,7 @@
   <h1>EchoMemory</h1>
   <p><strong>Your conversations, made searchable.</strong></p>
   <p>
-    <a href="[#demo](https://echomemory-ui-demo.vercel.app/)">Website</a> ·
+    <a href="(https://echomemory-ui-demo.vercel.app/)">Website</a> ·
     <a href="#how-it-works">How it works</a> ·
     <a href="#features">Features</a> ·
     <a href="#echomemory-vs-cloud-alternatives">Comparison</a> ·
