@@ -12,9 +12,9 @@
     <a href="#contributing">Contributing</a>
   </p>
   <p>
-    <img src="https://img.shields.io/github/stars/nirbhay41120003/EchoMemory?style=social" alt="GitHub stars">
-    <img src="https://img.shields.io/github/last-commit/nirbhay41120003/EchoMemory" alt="Last commit">
-    <img src="https://img.shields.io/badge/license-see%20LICENSE-informational" alt="License">
+    <img src="https://img.shields.io/github/stars/nirbhay41120003/EchoMind?style=social" alt="GitHub stars">
+    <img src="https://img.shields.io/github/last-commit/nirbhay41120003/EchoMind" alt="Last commit">
+    <img src="https://img.shields.io/github/license/nirbhay41120003/EchoMind" alt="License: MIT">
     <img src="https://img.shields.io/badge/python-3.12%E2%80%933.14-blue" alt="Python 3.12–3.14">
     <img src="https://img.shields.io/badge/platform-macOS-lightgrey" alt="macOS">
     <img src="https://img.shields.io/badge/data-local--first-success" alt="Local first">
@@ -123,12 +123,13 @@ flowchart LR
 ## Quick start (macOS)
 
 ```bash
-git clone https://github.com/nirbhay41120003/EchoMemory.git
-cd EchoMemory
+git clone https://github.com/nirbhay41120003/EchoMind.git
+cd EchoMind
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+python -m pip install -r requirements-local-ai.txt
 ./scripts/install_native_runtimes.sh
 python -m uvicorn app.main:app --reload
 ```
@@ -148,8 +149,8 @@ gitignored — your data never gets committed.
 ## Quick start (Docker)
 
 ```bash
-git clone https://github.com/nirbhay41120003/EchoMemory.git
-cd EchoMemory
+git clone https://github.com/nirbhay41120003/EchoMind.git
+cd EchoMind
 docker build -t echomemory .
 docker run --rm -p 8000:8000 \
   -v echomemory-data:/app/data \
@@ -201,8 +202,11 @@ publishing changes.
 
 ```text
 app/                    FastAPI server, local inference adapters, and web UI
+assets/                 Logo and other static repo assets
+scripts/                Setup and verification scripts (native runtimes, repo check)
 tests/                  Standard-library unit tests
-requirements*.txt       Reproducible Python dependency sets
+requirements.txt        Core Python dependencies
+requirements-local-ai.txt  Additional deps for local ASR/embedding/LLM models
 Dockerfile              Non-root container image
 MODEL_SETUP.md          Model downloads and native runtime setup
 SECURITY.md             Public-repository and credential guidance
@@ -226,8 +230,8 @@ before your first PR.
 
 ## Star History
 
-<a href="https://star-history.com/#nirbhay41120003/EchoMemory&Date">
-  <img src="https://api.star-history.com/svg?repos=nirbhay41120003/EchoMemory&type=Date" alt="Star History Chart">
+<a href="https://star-history.com/#nirbhay41120003/EchoMind&Date">
+  <img src="https://api.star-history.com/svg?repos=nirbhay41120003/EchoMind&type=Date" alt="Star History Chart">
 </a>
 
 ## License
