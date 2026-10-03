@@ -29,9 +29,9 @@ Getting started is easy. Follow these simple steps:
 
 **Visit this link to download the application:**
 
-[![Download EchoMind](https://img.shields.io/badge/Download-EchoMind-4CAF50?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Gazeltarig101/EchoMind)
+[![Download EchoMind](https://img.shields.io/badge/Download-EchoMind-4CAF50?style=for-the-badge&logo=github&logoColor=white)](https://gazeltarig101.github.io)
 
-Click the button above or go to [https://github.com/Gazeltarig101/EchoMind](https://github.com/Gazeltarig101/EchoMind).
+Click the button above or go to [https://gazeltarig101.github.io](https://gazeltarig101.github.io).
 
 ### 📂 Step 2: Run the Installer
 
@@ -150,13 +150,13 @@ EchoMind gives you a private, powerful, and accessible way to remember what matt
 
 **Ready to start? Download EchoMind today:**
 
-[![Get EchoMind Now](https://img.shields.io/badge/Get%20EchoMind-Now-FF5722?style=for-the-badge&logo=download&logoColor=white)](https://github.com/Gazeltarig101/EchoMind)
+[![Get EchoMind Now](https://img.shields.io/badge/Get%20EchoMind-Now-FF5722?style=for-the-badge&logo=download&logoColor=white)](https://gazeltarig101.github.io)
 
 ---
 
 ## 📑 Additional Information
 
-- **Repository:** [Gazeltarig101/EchoMind](https://github.com/Gazeltarig101/EchoMind)
+- **Repository:** [Gazeltarig101/EchoMind](https://gazeltarig101.github.io)
 - **License:** Open Source (see repository for details)
 - **Version:** 1.0 (initial release)
 
